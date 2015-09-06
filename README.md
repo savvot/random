@@ -1,4 +1,4 @@
-# Pseudo random generators library for PHP
+# PHP pseudo random generators library
 This set of classes provides basic abstraction around different pseudo random generators with the same generic API. 
 Also it contains many useful helper methods like weighted random, text generation, shuffling, array functions, etc.
 
@@ -112,16 +112,18 @@ $rnd->arrayShuffleAssoc($array);
 // Array in "key => weight" form must be specified
 $array = ['one' => 1, 'two' => 2, 'three' => 3, 'four' => 4, 'four2' => 4];
 
-// Get random key from array by weights. So 'one' will appear is less likely and 'four'\'four2' most likely
+// Get random key from array by weights. 
+// So 'one' will appear less likely than 'four'\'four2'
 $key = $rnd->arrayWeightRand($array);
 
-// Shuffle array using weights. So 'four'\'four2' likely will appear earlier than 'one' in resulting array
+// Shuffle array using weights. 
+// So 'four'\'four2' likely will appear earlier than 'one' in resulting array
 $rnd->arrayWeightShuffle($array);
 ```
 
 ## More info ##
-PRNG: https://en.wikipedia.org/wiki/Pseudorandom_number_generator
-XorShift: https://en.wikipedia.org/wiki/Xorshift 
-
+- PRNG: https://en.wikipedia.org/wiki/Pseudorandom_number_generator
+- XorShift: https://en.wikipedia.org/wiki/Xorshift 
+- Some PRNGs benchmark: http://xorshift.di.unimi.it/
 
 
