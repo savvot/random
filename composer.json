@@ -1,0 +1,30 @@
+{
+    "name": "savvot/random",
+    "description": "Deterministic pseudo-random generators library with dozens of useful functions and several sources of randomness",
+    "keywords": [
+        "random number generator", "prng", "random", "pseudo-random", "rng", "rnd", "php"
+    ],
+    "authors": [
+        {
+            "name": "SavvoT",
+            "email": "savvot@ya.ru"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {
+        "php-64bit": ">=5.5.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "4.8.*"
+    },
+    "autoload": {
+        "psr-4": {
+            "savvot\\random\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "savvot\\random\\tests\\": "tests/"
+        }
+    }
+}
