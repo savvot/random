@@ -10,6 +10,7 @@
             "email": "savvot@ya.ru"
         }
     ],
+    "license": "MIT",
     "minimum-stability": "stable",
     "require": {
         "php-64bit": ">=5.5.0"
