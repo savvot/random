@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/savvot/random.svg?branch=master)](https://travis-ci.org/savvot/random)
+
 # PHP pseudo random generators library
 This set of classes provides basic abstraction around different pseudo random generators with the same generic API. 
 Also it contains many useful helper methods like weighted random, text generation, shuffling, array functions, etc.
