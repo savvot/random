@@ -483,14 +483,14 @@ abstract class AbstractRandTest extends \PHPUnit_Framework_TestCase
 
         $sum = array_sum($data);
         $one = (1 / $sum) * 10000;
-        $this->assertTrue(abs($stats['one'] - $one) < ($one / 10));
+        $this->assertTrue(abs($stats['one'] - $one) < ($one / 20));
         $two = (2 / $sum) * 10000;
-        $this->assertTrue(abs($stats['two'] - $two) < ($two / 10));
+        $this->assertTrue(abs($stats['two'] - $two) < ($two / 20));
         $three = (3 / $sum) * 10000;
-        $this->assertTrue(abs($stats['three'] - $three) < ($three / 10));
+        $this->assertTrue(abs($stats['three'] - $three) < ($three / 15));
         $four = (4 / $sum) * 10000;
-        $this->assertTrue(abs($stats['four'] - $four) < ($four / 10));
-        $this->assertTrue(abs($stats['four2'] - $four) < ($four / 10));
+        $this->assertTrue(abs($stats['four'] - $four) < ($four / 15));
+        $this->assertTrue(abs($stats['four2'] - $four) < ($four / 15));
 
         $data = ['one' => 1];
         $this->assertSame('one', $rnd->arrayWeightRand($data));
