@@ -24,14 +24,21 @@ class XorShiftRand extends AbstractRand
      */
     protected function init()
     {
-        $state = unpack('P*', $this->hashedSeed);
-        $this->state = [$state[1] & self::INT_MAX, $state[2] & self::INT_MAX];
+        // Unfortunately P flag for 64bit is 5.6+
+        $state = unpack('V*', $this->hashedSeed);
+        $this->state = [
+            ($state[2] << 32 | $state[1]) & self::INT_MAX,
+            ($state[4] << 32 | $state[3]) & self::INT_MAX,
+        ];
 
         // Values must not be 0
         while($this->state[0] === 0 || $this->state[1] === 0) {
             $this->hashedSeed = md5($this->hashedSeed, true);
-            $state = unpack('P*', $this->hashedSeed);
-            $this->state = [$state[1] & self::INT_MAX, $state[2] & self::INT_MAX];
+            $state = unpack('V*', $this->hashedSeed);
+            $this->state = [
+                ($state[2] << 32 | $state[1]) & self::INT_MAX,
+                ($state[4] << 32 | $state[3]) & self::INT_MAX,
+            ];
         }
     }
 
