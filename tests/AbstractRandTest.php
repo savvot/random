@@ -29,10 +29,10 @@ abstract class AbstractRandTest extends \PHPUnit_Framework_TestCase
         // Lets test how "uniform" is prng distribution
         $data = [];
         for ($i = 0; $i < 10000; $i++) {
-            $data[] = $rnd->randomInt();
+            $data[] = round($rnd->randomInt() * 0.5);
         }
         // Average should be max 2% different than generator's INT_MAX/2
-        $this->assertUniform($data, $rnd::INT_MAX * 0.5, $rnd::INT_MAX * 0.02);
+        $this->assertUniform($data, $rnd::INT_MAX * 0.25, $rnd::INT_MAX * 0.02);
     }
 
     public function testRandom()
@@ -360,10 +360,11 @@ abstract class AbstractRandTest extends \PHPUnit_Framework_TestCase
 
         // Multibyte
         $data = $rnd->randomString(597, 'АБВГДЕжзийклм', true);
-        $this->assertTrue(is_string($data) && mb_strlen($data) == 597);
+        $this->assertTrue(is_string($data) && mb_strlen($data, 'UTF-8') == 597);
         $this->assertRegExp('@^[АБВГДЕжзийклм]+$@', $data);
 
         $data = $rnd->randomString(3, 'ЖЖЖЖЖЖЖ', true);
+        $this->assertTrue(is_string($data) && mb_strlen($data, 'UTF-8') == 3);
         $this->assertSame($data, 'ЖЖЖ');
 
         // Uniform test
