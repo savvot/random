@@ -2,9 +2,15 @@
 
 namespace savvot\random;
 
+/**
+ * Proof-of-concept that md5 hash is uniformly distributed and can be used as PRNG source
+ * Pretty fast, simple and straightforward generator
+ *
+ * @package savvot\random
+ * @author  SavvoT <savvot@ya.ru>
+ */
 class HashRand extends AbstractRand
 {
-
     /**
      * This is 63bit generator because PHP does not support unsigned 64bit int
      */
