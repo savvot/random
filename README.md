@@ -25,7 +25,13 @@ There is also no control over current state of random sequences.
 - Array methods, alternatives to array_rand, shuffle
 
 ## PRNG sources ##
-- **XorShiftRand** - Fast and good quality random generator, based on XorShift+ algorithm with 128bit state.
+- **XorShiftRand**
+Fast and good quality random generator, based on XorShift+ algorithm with 128bit state.
+
+- **MtRand**
+Pure PHP implementation of builtin mt_rand variation of Mersenne twister algorithm.
+Random sequences from both methods with same int seed will match perfectly, therefore this generator is fully compatible with mt_rand() and can be used as replacement
+
 
 ## Examples ##
 ```php
