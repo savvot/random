@@ -449,7 +449,7 @@ abstract class AbstractRandTest extends \PHPUnit_Framework_TestCase
 
         }
         foreach ($stats as $cnt) {
-            $this->assertTrue(abs(5000 - $cnt) < 300);
+            $this->assertTrue(abs(5000 - $cnt) < 500);
         }
     }
 
