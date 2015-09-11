@@ -26,12 +26,14 @@ There is also no control over current state of random sequences.
 
 ## PRNG sources ##
 - **XorShiftRand**
-Fast and good quality random generator, based on XorShift+ algorithm with 128bit state.
+Fast and good quality random generator, based on XorShift+ algorithm with 128bit state. Should be used in most cases.
 
 - **MtRand**
 Pure PHP implementation of builtin mt_rand variation of Mersenne twister algorithm.
-Random sequences from both methods with same int seed will match perfectly, therefore this generator is fully compatible with mt_rand() and can be used as replacement
+Random sequences from both methods with same int seed will match perfectly, therefore this generator is fully compatible with mt_rand() and can be used as replacement.
 
+- **HashRand**
+Proof-of-concept that md5 hash is uniformly distributed and can be used as source for pseudo random numbers. Pretty fast and straightforward.
 
 ## Examples ##
 ```php

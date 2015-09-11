@@ -277,6 +277,44 @@ abstract class AbstractRandTest extends \PHPUnit_Framework_TestCase
         $this->assertSame($n4, $rnd2->random());
     }
 
+    public function testPushPopState()
+    {
+        $class = $this->randClass;
+
+        /** @var \savvot\random\AbstractRand $rnd */
+        $rnd = new $class('proseed');
+
+        $rnd->random(); $rnd->random();
+        $rnd->pushState();
+        $seq1 = [];
+        for($i=0; $i<10; $i++) {
+            $seq1[] = $rnd->random(1, 10);
+        }
+
+        $rnd->random(); $rnd->random(); $rnd->random();
+        $rnd->pushState();
+        $seq2 = [];
+        for($i=0; $i<23; $i++) {
+            $seq2[] = $rnd->random();
+        }
+
+        $rnd->random(); $rnd->random(); $rnd->random();
+        $rnd->popState();
+        $seq2test = [];
+        for($i=0; $i<23; $i++) {
+            $seq2test[] = $rnd->random();
+        }
+        $this->assertSame($seq2, $seq2test);
+
+        $rnd->random(); $rnd->random(); $rnd->random();
+        $rnd->popState();
+        $seq1test = [];
+        for($i=0; $i<10; $i++) {
+            $seq1test[] = $rnd->random(1, 10);
+        }
+        $this->assertSame($seq1, $seq1test);
+    }
+
     /**
      * @expectedException \savvot\random\RandException
      */
@@ -297,6 +335,16 @@ abstract class AbstractRandTest extends \PHPUnit_Framework_TestCase
         $state = $rnd->getState();
         $state['class'] = self::class;
         $rnd->setState($state);
+    }
+
+    /**
+     * @expectedException \savvot\random\RandException
+     */
+    public function testPopStateException()
+    {
+        /** @var \savvot\random\AbstractRand $rnd */
+        $rnd = new $this->randClass;
+        $rnd->popState();
     }
 
     public function testReset()

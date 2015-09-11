@@ -48,6 +48,11 @@ abstract class AbstractRand
     protected $state;
 
     /**
+     * @var array State stack, used by pushState() and popState() methods
+     */
+    protected $stateStack = [];
+
+    /**
      * Initializes random generator
      * Must be implemented by derived class
      */
@@ -65,7 +70,7 @@ abstract class AbstractRand
     /**
      * Class constructor. Initializes generator from specified $seed string
      *
-     * @param string $seed
+     * @param string $seed Seed to initialize generator's state. Defaults to null (auto)
      */
     public function __construct($seed = null)
     {
@@ -127,6 +132,28 @@ abstract class AbstractRand
             'seed'  => $this->seed,
             'state' => $this->state
         ];
+    }
+
+    /**
+     * Pushes current internal generator's state onto stack.
+     */
+    public function pushState()
+    {
+        $this->stateStack[] = $this->getState();
+    }
+
+    /**
+     * Restores last pushed internal generator's state from stack
+     *
+     * @throws RandException if stack is empty
+     */
+    public function popState()
+    {
+        $state = array_pop($this->stateStack);
+        if($state === null) {
+            throw new RandException('State stack is empty');
+        }
+        $this->setState($state);
     }
 
     /**

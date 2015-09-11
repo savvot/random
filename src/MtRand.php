@@ -61,7 +61,7 @@ class MtRand extends AbstractRand
             $r = $state[$i - 1];
             $state[$i] = (1812433253 * ($r ^ ($r >> 30)) + $i) & 0xffffffff;
         }
-        $this->state['mt'] = $state;
+        $this->state = ['mt' => $state];
         $this->reload();
     }
 
