@@ -1,0 +1,12 @@
+filter:
+    excluded_paths:
+        - 'tests/*'
+checks:
+    php: true
+coding_style:
+    php: {  }
+tools:
+    external_code_coverage:
+        timeout: 600
+    php_sim: false
+    php_cpd: false

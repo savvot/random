@@ -136,6 +136,7 @@ $rnd->arrayWeightShuffle($array);
 ## More info ##
 - PRNG: https://en.wikipedia.org/wiki/Pseudorandom_number_generator
 - XorShift: https://en.wikipedia.org/wiki/Xorshift 
+- Mersenne Twister: https://en.wikipedia.org/wiki/Mersenne_Twister
 - Some PRNGs benchmark: http://xorshift.di.unimi.it/
 
 
