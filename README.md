@@ -7,6 +7,8 @@ WARNING: This PRNGs are **non cryptographically secure** (mt_rand() too)
 [![Latest Stable Version](https://poser.pugx.org/savvot/random/v/stable)](https://packagist.org/packages/savvot/random) 
 [![License](https://poser.pugx.org/savvot/random/license)](https://packagist.org/packages/savvot/random)
 [![Build Status](https://travis-ci.org/savvot/random.svg?branch=master)](https://travis-ci.org/savvot/random)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/savvot/random/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/savvot/random/?branch=master)
+[![Code Coverage](https://scrutinizer-ci.com/g/savvot/random/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/savvot/random/?branch=master)
 
 ## Why not mt_rand()? ##
 PHP builtin mt_rand() and rand() are global functions, so it is not possible to create several generators with different predefined seeds and use them simultaneously.
