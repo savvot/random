@@ -66,7 +66,6 @@ abstract class AbstractRand
      */
     abstract public function randomInt();
 
-
     /**
      * Class constructor. Initializes generator from specified $seed string
      *
@@ -74,14 +73,14 @@ abstract class AbstractRand
      */
     public function __construct($seed = null)
     {
-        $this->intMaxDiv = 1 / static::INT_MAX;
+        $this->intMaxDiv = 1.0 / static::INT_MAX;
         $this->setSeed($seed);
     }
 
     /**
      * Sets new seed and initializes generator
      *
-     * @param string $seed New seed for PRNG. If null is given, creates random seed from mt_rand
+     * @param string|int $seed New seed for PRNG. If null is given, creates random seed from mt_rand
      */
     public function setSeed($seed = null)
     {
@@ -150,7 +149,7 @@ abstract class AbstractRand
     public function popState()
     {
         $state = array_pop($this->stateStack);
-        if($state === null) {
+        if ($state === null) {
             throw new RandException('State stack is empty');
         }
         $this->setState($state);
@@ -182,7 +181,6 @@ abstract class AbstractRand
         } elseif ($max > static::INT_MAX) {
             throw new RandException('Max is bigger than maximum generator value');
         }
-        //return $min + $this->randomInt() % ($max - $min + 1);
         return $min + (int)(($max - $min + 1) * $this->randomInt() * $this->intMaxDiv);
     }
 
@@ -221,7 +219,7 @@ abstract class AbstractRand
             $asciiTable = array_map(function ($v){ return chr($v); }, range(0, 255));
         }
 
-        if($length < 1) {
+        if ($length < 1) {
             throw new RandException('Invalid length');
         }
 
@@ -266,7 +264,7 @@ abstract class AbstractRand
      */
     public function arrayRand(array $array)
     {
-        if(!$array) {
+        if (empty($array)) {
             throw new RandException('Empty array specified');
         }
 
@@ -350,12 +348,12 @@ abstract class AbstractRand
             return key($array);
         }
         $sum = array_sum($array);
-        if($sum < 1) {
+        if ($sum < 1) {
             throw new RandException('Negative or all-zero weights not allowed');
         }
         $targetWeight = $this->random(1, $sum);
         foreach ($array as $key => $weight) {
-            if($weight < 0) {
+            if ($weight < 0) {
                 throw new RandException('Negative weights not allowed');
             }
             $targetWeight -= $weight;

@@ -41,7 +41,7 @@ class Random
      */
     public static function createFromState(array $state)
     {
-        if (!isset($state['class'], $state['seed'], $state['state'])) {
+        if (!isset($state['class'])) {
             throw new RandException('Invalid state');
         }
 

@@ -7,6 +7,6 @@ coding_style:
     php: {  }
 tools:
     external_code_coverage:
-        timeout: 600
+        timeout: 1200
     php_sim: false
     php_cpd: false
