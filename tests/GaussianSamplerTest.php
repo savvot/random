@@ -14,7 +14,8 @@ class GaussianSamplerTest extends \PHPUnit_Framework_TestCase
         $this->assertInstanceOf('\Savvot\Random\GaussianSampler', $sampler);
 
         // Only AbstractRand children allowed
-        $this->setExpectedException('\PHPUnit_Framework_Error');
+        $error = PHP_MAJOR_VERSION == 7 ? '\TypeError' : '\PHPUnit_Framework_Error';
+        $this->setExpectedException($error);
         $sampler = new GaussianSampler(new \stdClass);
     }
 
