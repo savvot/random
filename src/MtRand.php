@@ -1,6 +1,6 @@
 <?php
 
-namespace savvot\random;
+namespace Savvot\Random;
 
 /**
  * Pure PHP implementation of Mersenne twister PRNG (builtin mt_rand() function)
@@ -12,7 +12,7 @@ namespace savvot\random;
  *
  * Based on PHP source code from https://github.com/php/php-src/blob/master/ext/standard/rand.c
  *
- * @package savvot\random
+ * @package Savvot\Random
  * @author  SavvoT <savvot@ya.ru>
  */
 class MtRand extends AbstractRand

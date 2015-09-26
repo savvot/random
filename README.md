@@ -16,7 +16,8 @@ There is also no control over current state of random sequences.
 
 ## Features ##
 - Deterministic random generators with optional seeds
-- Correct uniform distribution (there are some tests for this)
+- Correct uniform distribution
+- Gaussian sampler for normally distributed random numbers based on **Ziggurat algorithm**
 - Extensible architecture: it is easy to add your own source of randomness
 - Seeds can be **strings** of any length you want
 - Possibility to save and restore current PRNG's state at any time, so one can **replay** the sequence from known state
@@ -140,5 +141,7 @@ $rnd->arrayWeightShuffle($array);
 - XorShift: https://en.wikipedia.org/wiki/Xorshift 
 - Mersenne Twister: https://en.wikipedia.org/wiki/Mersenne_Twister
 - Some PRNGs benchmark: http://xorshift.di.unimi.it/
+- Normal distribution: https://en.wikipedia.org/wiki/Normal_distribution
+- Ziggurat algorithm: https://en.wikipedia.org/wiki/Ziggurat_algorithm
 
 

@@ -1,11 +1,11 @@
 <?php
 
-namespace savvot\random;
+namespace Savvot\Random;
 
 /**
  * Abstract base class with basic methods
  *
- * @package savvot\random
+ * @package Savvot\Random
  * @author  SavvoT <savvot@ya.ru>
  */
 abstract class AbstractRand
@@ -51,6 +51,11 @@ abstract class AbstractRand
      * @var array State stack, used by pushState() and popState() methods
      */
     protected $stateStack = [];
+
+    /**
+     * @var GaussianSampler Normal distributed random numbers generator
+     */
+    protected $gaussianSampler;
 
     /**
      * Initializes random generator
@@ -164,7 +169,22 @@ abstract class AbstractRand
     }
 
     /**
-     * Returns random number within given range.
+     * @param float $mean
+     * @param float $sigma
+     * @return float Normally distributed random number
+     */
+    public function gaussianRandom($mean = 0.0, $sigma = 1.0)
+    {
+        // Sampler initialization is heavy so should not be used in __construct
+        if ($this->gaussianSampler === null) {
+            $this->gaussianSampler = new GaussianSampler($this);
+        }
+
+        return $mean + ($this->gaussianSampler->nextSample() * $sigma);
+    }
+
+    /**
+     * Returns uniformly distributed random number within given range.
      * In case of incorrect range RandException will be thrown
      *
      * @param int $min Range min. Defaults to 0.
@@ -298,12 +318,7 @@ abstract class AbstractRand
         }
 
         $array = array_values($array);
-        for ($i = $len; $i >= 0; $i--) {
-            $j = $this->random(0, $i);
-            $tmp = $array[$i];
-            $array[$i] = $array[$j];
-            $array[$j] = $tmp;
-        }
+        $this->shuffle($array);
     }
 
     /**
@@ -320,12 +335,8 @@ abstract class AbstractRand
         }
 
         $keys = array_keys($array);
-        for ($i = $len; $i >= 0; $i--) {
-            $j = $this->random(0, $i);
-            $tmp = $keys[$i];
-            $keys[$i] = $keys[$j];
-            $keys[$j] = $tmp;
-        }
+        $this->shuffle($keys);
+
         foreach ($keys as $key) {
             $tmp = $array[$key];
             unset($array[$key]);
@@ -361,7 +372,6 @@ abstract class AbstractRand
                 return $key;
             }
         }
-        return key($array);
     }
 
     /**
@@ -381,5 +391,20 @@ abstract class AbstractRand
             unset($array[$key]);
         }
         $array = $tmp;
+    }
+
+    /**
+     * Simple array shuffle helper function
+     *
+     * @param array $array
+     */
+    private function shuffle(array &$array)
+    {
+        for ($i = count($array) - 1; $i >= 0; $i--) {
+            $j = $this->random(0, $i);
+            $tmp = $array[$i];
+            $array[$i] = $array[$j];
+            $array[$j] = $tmp;
+        }
     }
 }

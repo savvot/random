@@ -1,6 +1,6 @@
 <?php
 
-namespace savvot\random;
+namespace Savvot\Random;
 
 /**
  * Fast and good quality random generator, based on XorShift+ algorithm with 128bit state
@@ -8,7 +8,7 @@ namespace savvot\random;
  * More info: https://en.wikipedia.org/wiki/Xorshift
  * Comparison of different xorshifts: http://xorshift.di.unimi.it/
  *
- * @package savvot\random
+ * @package Savvot\Random
  * @author  SavvoT <savvot@ya.ru>
  */
 class XorShiftRand extends AbstractRand

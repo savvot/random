@@ -1,19 +1,19 @@
 <?php
 
-namespace savvot\random;
+namespace Savvot\Random;
 
 /**
  * Static helper class.
  * Provides uniform way to create RNG objects from different generators and states
  *
- * @package savvot\random
+ * @package Savvot\Random
  * @author  SavvoT <savvot@ya.ru>
  */
 class Random
 {
-    const MT = '\savvot\random\MtRand';
-    const XORSHIFT = '\savvot\random\XorShiftRand';
-    const HASH = '\savvot\random\HashRand';
+    const MT = '\Savvot\Random\MtRand';
+    const XORSHIFT = '\Savvot\Random\XorShiftRand';
+    const HASH = '\Savvot\Random\HashRand';
 
     /**
      * Creates RNG from specified class and initializes it with given seed
@@ -25,7 +25,7 @@ class Random
      */
     public static function create($seed = null, $rngClass = self::XORSHIFT)
     {
-        if (!is_subclass_of($rngClass, '\savvot\random\AbstractRand')) {
+        if (!is_subclass_of($rngClass, '\Savvot\Random\AbstractRand')) {
             throw new RandException('PRNG class must extend AbstractRand');
         }
 
@@ -46,11 +46,11 @@ class Random
         }
 
         $class = $state['class'];
-        if (!is_subclass_of($class, '\savvot\random\AbstractRand')) {
-            throw new RandException('Invalid rng class in state');
+        if (!is_subclass_of($class, '\Savvot\Random\AbstractRand')) {
+            throw new RandException('Invalid RNG class in state');
         }
 
-        /** @var \savvot\random\AbstractRand $prng */
+        /** @var \Savvot\Random\AbstractRand $prng */
         $prng = new $class;
         $prng->setState($state);
 

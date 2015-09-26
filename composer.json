@@ -20,12 +20,12 @@
     },
     "autoload": {
         "psr-4": {
-            "savvot\\random\\": "src/"
+            "Savvot\\Random\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "savvot\\random\\tests\\": "tests/"
+            "Savvot\\Random\\Tests\\": "tests/"
         }
     }
 }

@@ -1,11 +1,11 @@
 <?php
 
-namespace savvot\random;
+namespace Savvot\Random;
 
 /**
  * Class RandException
  *
- * @package savvot\random
+ * @package Savvot\Random
  * @author  SavvoT <savvot@ya.ru>
  */
 class RandException extends \Exception
