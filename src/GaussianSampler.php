@@ -16,7 +16,9 @@ class GaussianSampler
     const R = 3.442619855899;
     const A = 9.91256303526217e-3;
 
+    /** @var AbstractRand RNG source */
     private $rng;
+
     private $intMaxDiv;
     private $x = [];
     private $y = [];

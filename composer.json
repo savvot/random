@@ -2,7 +2,19 @@
     "name": "savvot/random",
     "description": "Deterministic pseudo-random generators library with dozens of useful functions and several sources of randomness",
     "keywords": [
-        "random number generator", "prng", "random", "pseudo-random", "rng", "rnd", "php"
+        "random number generator",
+        "prng",
+        "random",
+        "pseudo random",
+        "rng",
+        "rnd",
+        "php",
+        "mersenne twister",
+        "xorshift",
+        "ziggurat algorithm",
+        "gaussian distribution",
+        "normal distribution",
+        "uniform distribution"
     ],
     "authors": [
         {
